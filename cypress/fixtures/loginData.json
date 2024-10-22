@@ -1,0 +1,18 @@
+{
+  "validUser": {
+    "email": "danh.nguyen@gmail.com",
+    "password": "Password123!"
+  },
+  "invalidUser": {
+    "email": "danh@gmail.com",
+    "password": "Password123!"
+  },
+  "wrongPassword": {
+    "email": "danh.nguyen@gmail.com",
+    "password": "123!"
+  },
+  "wrongEmail": {
+    "email": "danh@gmail.com",
+    "password": "Password!"
+  }
+}
