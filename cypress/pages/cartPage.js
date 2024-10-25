@@ -1,15 +1,16 @@
-class cartPage {
-  weblocators = {
-    card: '.product-item-card',
-    cartIcon: '.cart-icon',
-    removeBtn: '.remove-product',
+class CartPage {
+  elements = {
+    card: () => cy.get('.product-item-card'),
+    cartIcon: () => cy.get('.cart-icon'),
+    removeBtn: () => cy.get('.remove-product'),
     increaseQuantityButton: (productName) =>
-      `.product-row[data-product="${productName}"] .increase-qty`,
+      cy.get(`.product-row[data-product="${productName}"] .increase-qty`),
     decreaseQuantityButton: (productName) =>
-      `.product-row[data-product="${productName}"] .decrease-qty`,
-    productQuantity: '.product-quantity',
-    totalPrice: '.total-price',
-    productRow: (productName) => `.product-row[data-product="${productName}"]`,
+      cy.get(`.product-row[data-product="${productName}"] .decrease-qty`),
+    productQuantity: () => cy.get('.product-quantity'),
+    totalPrice: () => cy.get('.total-price'),
+    productRow: (productName) =>
+      cy.get(`.product-row[data-product="${productName}"]`),
   };
 
   openCartPage() {
@@ -18,9 +19,10 @@ class cartPage {
 
   addProductToCart(productName) {
     cy.visit('/shop');
-    cy.get(this.weblocators.card)
+    this.elements
+      .card()
       .contains(productName)
-      .find(this.weblocators.cartIcon)
+      .find(this.elements.cartIcon())
       .click();
     cy.contains(`${productName} has been added to the cart!`).should(
       'be.visible'
@@ -29,19 +31,19 @@ class cartPage {
 
   increaseProductQuantity(productName, increaseBy) {
     for (let i = 0; i < increaseBy; i++) {
-      cy.get(this.weblocators.increaseQuantityButton(productName)).click({
-        force: true,
-      });
+      this.elements.increaseQuantityButton(productName).click({ force: true });
     }
 
-    cy.get(this.weblocators.productRow(productName))
-      .find(this.weblocators.productQuantity)
+    this.elements
+      .productRow(productName)
+      .find(this.elements.productQuantity())
       .should('have.text', `${increaseBy}`);
   }
 
   verifyProductQuantity(productName, expectedQuantity) {
-    cy.get(this.weblocators.productRow(productName))
-      .find(this.weblocators.productQuantity)
+    this.elements
+      .productRow(productName)
+      .find(this.elements.productQuantity())
       .should('be.visible')
       .invoke('text')
       .then((quantityText) => {
@@ -51,35 +53,36 @@ class cartPage {
   }
 
   setProductQuantity(productName, quantity) {
-    cy.get(this.weblocators.productRow(productName))
-      .find(this.weblocators.productQuantity)
+    this.elements
+      .productRow(productName)
+      .find(this.elements.productQuantity())
       .clear()
       .type(quantity);
   }
 
   decreaseProductQuantity(productName, decreaseBy) {
     for (let i = 0; i < decreaseBy; i++) {
-      cy.get(this.weblocators.decreaseQuantityButton(productName)).click({
-        force: true,
-      });
+      this.elements.decreaseQuantityButton(productName).click({ force: true });
     }
 
-    cy.get(this.weblocators.productRow(productName))
-      .find(this.weblocators.productQuantity)
+    this.elements
+      .productRow(productName)
+      .find(this.elements.productQuantity())
       .should('have.text', `${decreaseBy}`);
   }
 
   removeProductFromCart(productName) {
-    cy.get(this.weblocators.productRow(productName))
-      .find(this.weblocators.removeBtn)
+    this.elements
+      .productRow(productName)
+      .find(this.elements.removeBtn())
       .click();
 
-    cy.get(this.weblocators.productRow(productName)).should('not.exist');
+    this.elements.productRow(productName).should('not.exist');
   }
 
   verifyProductNotInCart(productName) {
-    cy.get(this.weblocators.productRow(productName)).should('not.exist');
+    this.elements.productRow(productName).should('not.exist');
   }
 }
 
-export default new cartPage();
+export default new CartPage();

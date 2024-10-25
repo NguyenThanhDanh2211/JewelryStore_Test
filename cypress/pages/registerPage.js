@@ -1,11 +1,11 @@
-class registerPage {
-  weblocators = {
-    authIcon: '#auth',
-    register: '#register',
-    fullName: '#name',
-    email: '#email',
-    password: '#password',
-    registerBtn: '#btn-register',
+class RegisterPage {
+  elements = {
+    authIcon: () => cy.get('#auth'),
+    registerLink: () => cy.get('#register'),
+    fullNameInput: () => cy.get('#name'),
+    emailInput: () => cy.get('#email'),
+    passwordInput: () => cy.get('#password'),
+    registerButton: () => cy.get('#btn-register'),
   };
 
   openHomePage() {
@@ -13,28 +13,28 @@ class registerPage {
   }
 
   clickAuthIcon() {
-    cy.get(this.weblocators.authIcon).click();
+    this.elements.authIcon().click();
   }
 
   clickRegisterLink() {
-    cy.get(this.weblocators.register).click();
+    this.elements.registerLink().click();
   }
 
   enterFullName(fullName) {
-    cy.get(this.weblocators.fullName).type(fullName);
+    this.elements.fullNameInput().type(fullName);
   }
 
   enterEmail(email) {
-    cy.get(this.weblocators.email).type(email);
+    this.elements.emailInput().type(email);
   }
 
   enterPassword(password) {
-    cy.get(this.weblocators.password).type(password);
+    this.elements.passwordInput().type(password);
   }
 
   clickRegisterButton() {
-    cy.get(this.weblocators.registerBtn).click();
+    this.elements.registerButton().click();
   }
 }
 
-export default new registerPage();
+export default new RegisterPage();

@@ -1,17 +1,17 @@
-class paymentPage {
-  weblocators = {
+class PaymentPage {
+  elements = {
     shippingInfo: {
-      nameInput: '#name',
-      phoneInput: '#phone',
-      addressInput: '#address',
+      nameInput: () => cy.get('#name'),
+      phoneInput: () => cy.get('#phone'),
+      addressInput: () => cy.get('#address'),
     },
     paymentMethod: {
-      cashOption: '#payment-method-cash',
-      momoOption: '#payment-method-momo',
-      openUrl: '#open-url-momo',
+      cashOption: () => cy.get('#payment-method-cash'),
+      momoOption: () => cy.get('#payment-method-momo'),
+      openUrl: () => cy.get('#open-url-momo'),
     },
-    submitButton: '#next-btn',
-    success: '#text-order-success',
+    submitButton: () => cy.get('#next-btn'),
+    success: () => cy.get('#text-order-success'),
   };
 
   openCheckoutPage() {
@@ -19,35 +19,32 @@ class paymentPage {
   }
 
   fillShippingInfo(name, phone, address) {
-    cy.get(this.weblocators.shippingInfo.nameInput).type(name);
-    cy.get(this.weblocators.shippingInfo.phoneInput).type(phone);
-    cy.get(this.weblocators.shippingInfo.addressInput).type(address);
+    this.elements.shippingInfo.nameInput().type(name);
+    this.elements.shippingInfo.phoneInput().type(phone);
+    this.elements.shippingInfo.addressInput().type(address);
 
-    cy.get(this.weblocators.submitButton).click();
+    this.elements.submitButton().click();
   }
 
   selectedPaymentMethod(method) {
     if (method === 'cash') {
-      cy.get(this.weblocators.paymentMethod.cashOption).click();
-      cy.get(this.weblocators.submitButton).click();
+      this.elements.paymentMethod.cashOption().click();
+      this.elements.submitButton().click();
     } else if (method === 'momo') {
-      cy.get(this.weblocators.paymentMethod.momoOption).click();
-      cy.get(this.weblocators.paymentMethod.openUrl).click();
+      this.elements.paymentMethod.momoOption().click();
+      this.elements.paymentMethod.openUrl().click();
 
-      cy.get(this.weblocators.submitButton).click();
+      this.elements.submitButton().click();
     }
   }
 
   submitOrder() {
-    cy.get(this.weblocators.submitButton).click();
+    this.elements.submitButton().click();
   }
 
   verifySuccessOrder() {
-    cy.get(this.weblocators.success).should(
-      'contain',
-      'Thank you for your order!'
-    );
+    this.elements.success().should('contain', 'Thank you for your order!');
   }
 }
 
-export default new paymentPage();
+export default new PaymentPage();

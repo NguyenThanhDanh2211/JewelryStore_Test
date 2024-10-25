@@ -1,7 +1,7 @@
 class CartPage {
-  weblocators = {
-    cartIcon: '.cart-icon',
-    addProductBtn: '#add-product-btn',
+  elements = {
+    cartIcon: () => cy.get('.cart-icon'),
+    addProductBtn: () => cy.get('#add-product-btn'),
   };
 
   openProductDetail(slug) {
@@ -9,7 +9,7 @@ class CartPage {
   }
 
   clickAddProduct() {
-    cy.get(this.weblocators.addProductBtn).click();
+    this.elements.addProductBtn().click();
   }
 
   openProductPage() {
@@ -18,7 +18,7 @@ class CartPage {
 
   addMultipleProduct(productIndexes) {
     productIndexes.forEach((index) => {
-      cy.get(this.weblocators.cartIcon).eq(index).click();
+      this.elements.cartIcon().eq(index).click();
       cy.contains(' has been added to the cart!').should('be.visible');
       cy.wait(4000);
     });

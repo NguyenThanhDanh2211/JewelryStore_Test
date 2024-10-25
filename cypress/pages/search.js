@@ -1,7 +1,7 @@
-class search {
-  weblocators = {
-    search: '#search-icon',
-    input: 'input[placeholder="Search Products"]',
+class Search {
+  elements = {
+    searchIcon: () => cy.get('#search-icon'),
+    input: () => cy.get('input[placeholder="Search Products"]'),
   };
 
   openHomePage() {
@@ -9,12 +9,12 @@ class search {
   }
 
   clickIconSearch() {
-    cy.get(this.weblocators.search).click();
+    this.elements.searchIcon().click();
   }
 
   typeSearch(product) {
-    cy.get(this.weblocators.input).type(product);
+    this.elements.input().type(product);
   }
 }
 
-export default new search();
+export default new Search();

@@ -1,11 +1,11 @@
-class orderPage {
-  weblocators = {
-    ordersList: '.orders-list',
-    orderItem: (orderId) => `.order-item[data-id="${orderId}"]`,
-    orderDetail: '.order-detail',
-    cancelOrderBtn: '.cancel-order',
-    closeDialog: '.close-dialog',
-    cancelledOrdersTab: '.cancelled-orders-tab',
+class OrderPage {
+  elements = {
+    ordersList: () => cy.get('.orders-list'),
+    orderItem: (orderId) => cy.get(`.order-item[data-id="${orderId}"]`),
+    orderDetail: () => cy.get('.order-detail'),
+    cancelOrderBtn: () => cy.get('.cancel-order'),
+    closeDialog: () => cy.get('.close-dialog'),
+    cancelledOrdersTab: () => cy.get('.cancelled-orders-tab'),
   };
 
   openOrderPage() {
@@ -13,25 +13,26 @@ class orderPage {
   }
 
   viewOrderDetail(orderId) {
-    cy.get(this.weblocators.orderItem(orderId)).click();
-    cy.get(this.weblocators.orderDetail).should('be.visible');
+    this.elements.orderItem(orderId).click();
+    this.elements.orderDetail().should('be.visible');
   }
 
   cancelOrder(orderId) {
-    cy.get(this.weblocators.orderItem(orderId)).click();
-    cy.get(this.weblocators.cancelOrderBtn).click();
-    cy.get(this.weblocators.closeDialog).click();
+    this.elements.orderItem(orderId).click();
+    this.elements.cancelOrderBtn().click();
+    this.elements.closeDialog().click();
   }
 
   switchToCancelTab() {
-    cy.get(this.weblocators.cancelledOrdersTab).click();
+    this.elements.cancelledOrdersTab().click();
   }
 
   verifyOrderCanceled(orderId) {
-    cy.get(this.weblocators.ordersList)
-      .find(this.weblocators.orderItem(orderId))
+    this.elements
+      .ordersList()
+      .find(`.order-item[data-id="${orderId}"]`)
       .should('exist');
   }
 }
 
-export default new orderPage();
+export default new OrderPage();

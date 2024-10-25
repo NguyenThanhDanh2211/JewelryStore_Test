@@ -1,7 +1,7 @@
-class logoutPage {
-  weblocators = {
-    useIcon: '.user-icon',
-    logoutIcon: '.logout-icon',
+class LogoutPage {
+  elements = {
+    userIcon: () => cy.get('.user-icon'),
+    logoutIcon: () => cy.get('.logout-icon'),
   };
 
   openHomePage() {
@@ -9,8 +9,8 @@ class logoutPage {
   }
 
   logout() {
-    cy.get(this.weblocators.useIcon).click();
-    cy.get(this.weblocators.logoutIcon).click();
+    this.elements.userIcon().click();
+    this.elements.logoutIcon().click();
   }
 
   verifyLoggedOut() {
@@ -18,4 +18,4 @@ class logoutPage {
   }
 }
 
-export default new logoutPage();
+export default new LogoutPage();

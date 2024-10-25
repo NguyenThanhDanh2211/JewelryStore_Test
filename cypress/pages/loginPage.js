@@ -1,9 +1,9 @@
-class loginPage {
-  weblocators = {
-    authIcon: '#auth',
-    email: '#email',
-    password: '#password',
-    loginBtn: '#btn-login',
+class LoginPage {
+  elements = {
+    authIcon: () => cy.get('#auth'),
+    email: () => cy.get('#email'),
+    password: () => cy.get('#password'),
+    loginBtn: () => cy.get('#btn-login'),
   };
 
   openHomePage() {
@@ -11,20 +11,20 @@ class loginPage {
   }
 
   clickAuthIcon() {
-    cy.get(this.weblocators.authIcon).click();
+    this.elements.authIcon().click();
   }
 
   enterEmail(email) {
-    cy.get(this.weblocators.email).type(email);
+    this.elements.email().type(email);
   }
 
   enterPassword(password) {
-    cy.get(this.weblocators.password).type(password);
+    this.elements.password().type(password);
   }
 
   clickLoginButton() {
-    cy.get(this.weblocators.loginBtn).click();
+    this.elements.loginBtn().click();
   }
 }
 
-export default new loginPage();
+export default new LoginPage();

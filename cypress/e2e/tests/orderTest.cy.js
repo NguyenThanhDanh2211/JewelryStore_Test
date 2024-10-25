@@ -9,8 +9,8 @@ describe('Orders Functionality Tests', () => {
   it('should display the list of placed orders', () => {
     orderPage.openOrderPage();
 
-    cy.get(orderPage.weblocators.ordersList).should('be.visible');
-    cy.get(orderPage.weblocators.orderItem('671a6367d6d2f9c9df48c0db')).should(
+    cy.get(orderPage.elements.ordersList).should('be.visible');
+    cy.get(orderPage.elements.orderItem('671a6367d6d2f9c9df48c0db')).should(
       'exist'
     );
   });
