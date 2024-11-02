@@ -2,21 +2,21 @@ import cartPage from '../../pages/addProductToCart';
 import loginData from '../../fixtures/loginData.json';
 
 describe('Add Product To The Cart Functionality', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(loginData.validUser.email, loginData.validUser.password);
   });
 
-  it('should add a product to the cart from the product page', () => {
+  it('TC13: should add a product to the cart from the product page', () => {
     cartPage.openProductPage();
-    cartPage.addMultipleProduct([5]);
+    cartPage.addMultipleProduct([9]);
   });
 
-  it('should add multiple products to the cart from the product page', () => {
+  it('TC 15: should add multiple products to the cart from the product page', () => {
     cartPage.openProductPage();
     cartPage.addMultipleProduct([0, 1, 2, 3]);
   });
 
-  it.only('should add a product to the cart from the product details page', () => {
+  it('TC 14: should add a product to the cart from the product details page', () => {
     const slug = 'smile-small-pendant';
 
     cartPage.openProductDetail(slug);

@@ -2,30 +2,37 @@ import orderPage from '../../pages/orderPage';
 import loginData from '../../fixtures/loginData.json';
 
 describe('Orders Functionality Tests', () => {
-  before(() => {
+  let currentOrderId;
+
+  beforeEach(() => {
     cy.login(loginData.validUser.email, loginData.validUser.password);
+    orderPage.openOrderPage();
   });
 
-  it('should display the list of placed orders', () => {
-    orderPage.openOrderPage();
+  it('TC21: should display the list of placed orders and get first orderId', () => {
+    orderPage.elements.ordersList().should('be.visible');
 
-    cy.get(orderPage.elements.ordersList).should('be.visible');
-    cy.get(orderPage.elements.orderItem('671a6367d6d2f9c9df48c0db')).should(
-      'exist'
-    );
+    // Lấy `orderId` của đơn hàng đầu tiên và gán cho `currentOrderId`
+    cy.get('.order-item')
+      .first()
+      .invoke('attr', 'data-id')
+      .then((id) => {
+        currentOrderId = id;
+        expect(currentOrderId).to.exist;
+      });
   });
 
-  it.only('should display the order details when clicked on the order', () => {
-    orderPage.openOrderPage();
+  it('TC22: should display the order details when clicked on the order', () => {
+    cy.wrap(currentOrderId).should('exist');
 
-    orderPage.viewOrderDetail('671a489501ebf749d006b288');
+    orderPage.viewOrderDetail(currentOrderId);
   });
 
-  it('should cancel the order and verify it in the cancelled orders tab', () => {
-    orderPage.openOrderPage();
+  it('TC23: should cancel the order and verify it in the cancelled orders tab', () => {
+    cy.wrap(currentOrderId).should('exist');
 
-    orderPage.cancelOrder('671a6367d6d2f9c9df48c0db');
+    orderPage.cancelOrder(currentOrderId);
     orderPage.switchToCancelTab();
-    orderPage.verifyOrderCanceled('671a6367d6d2f9c9df48c0db');
+    orderPage.verifyOrderCanceled(currentOrderId);
   });
 });

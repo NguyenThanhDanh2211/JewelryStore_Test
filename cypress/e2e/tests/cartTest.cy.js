@@ -2,11 +2,11 @@ import loginData from '../../fixtures/loginData.json';
 import cartPage from '../../pages/cartPage';
 
 describe('Cart Functionality Tests', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(loginData.validUser.email, loginData.validUser.password);
   });
 
-  it('should increase product quantity in the cart', () => {
+  it('TC16: should increase product quantity in the cart', () => {
     const productName = 'True Wide Ring';
 
     cartPage.addProductToCart(productName);
@@ -15,7 +15,7 @@ describe('Cart Functionality Tests', () => {
     cartPage.verifyProductQuantity(productName, 3);
   });
 
-  it('should decrease product quantity in the cart', () => {
+  it('TC17: should decrease product quantity in the cart', () => {
     const productName = 'True Wide Ring';
 
     cartPage.addProductToCart(productName);
@@ -26,7 +26,7 @@ describe('Cart Functionality Tests', () => {
     cartPage.verifyProductQuantity(productName, 1);
   });
 
-  it.only('should remove a product from the cart', () => {
+  it('TC18: should remove a product from the cart', () => {
     const productName = 'True Wide Ring';
 
     cartPage.addProductToCart(productName);

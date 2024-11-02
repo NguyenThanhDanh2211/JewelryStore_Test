@@ -1,4 +1,4 @@
-class LoginPage {
+class loginPage {
   elements = {
     authIcon: () => cy.get('#auth'),
     email: () => cy.get('#email'),
@@ -27,4 +27,4 @@ class LoginPage {
   }
 }
 
-export default new LoginPage();
+export default new loginPage();

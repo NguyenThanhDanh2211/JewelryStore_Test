@@ -7,13 +7,13 @@ describe('Logout Functionality Tests', () => {
     logoutPage.openHomePage();
   });
 
-  it('should log out from the system', () => {
+  it('TC24: should log out from the system', () => {
     logoutPage.logout();
 
     logoutPage.verifyLoggedOut();
   });
 
-  it.only('should automatically log out after 1h of inactivity', () => {
+  it('TC25: should automatically log out after 1h of inactivity', () => {
     cy.clock();
     cy.tick(3600 * 1000);
 

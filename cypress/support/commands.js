@@ -28,10 +28,8 @@ Cypress.Commands.add('login', (email, password) => {
   cy.visit('/');
 
   cy.get('#auth').click();
-
   cy.get('#email').type(email);
   cy.get('#password').type(password);
-
   cy.get('#btn-login').click();
 
   cy.contains('Log in successful!').should('be.visible');

@@ -2,7 +2,7 @@ import registerPage from '../../pages/registerPage';
 import registerData from '../../fixtures/registerData.json';
 
 describe('Customer Registration Tests', () => {
-  it.only('should allow registration with valid email and password', () => {
+  it('TC1: should allow registration with valid email and password', () => {
     registerPage.openHomePage();
 
     registerPage.clickAuthIcon();
@@ -18,7 +18,7 @@ describe('Customer Registration Tests', () => {
     cy.contains('Registration successful!').should('be.visible');
   });
 
-  it('should not allow registration with an email that already exists', () => {
+  it('TC2: should not allow registration with an email that already exists', () => {
     registerPage.openHomePage();
 
     registerPage.clickAuthIcon();
@@ -34,7 +34,7 @@ describe('Customer Registration Tests', () => {
     cy.contains('User with given email already exist!').should('be.visible');
   });
 
-  it('should show an error message when password is less than 6 characters', () => {
+  it('TC3: should show an error message when password is less than 6 characters', () => {
     registerPage.openHomePage();
 
     registerPage.clickAuthIcon();

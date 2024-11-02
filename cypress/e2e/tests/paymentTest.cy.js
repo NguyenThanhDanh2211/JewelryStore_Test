@@ -7,9 +7,8 @@ describe('Checkout Payment Method Tests', () => {
     cy.login(loginData.validUser.email, loginData.validUser.password);
   });
 
-  it('should place order and pay with cash', () => {
+  it.only('TC19: should place order and pay with cash', () => {
     paymentPage.openCheckoutPage();
-
     paymentPage.fillShippingInfo(
       paymentData.name,
       paymentData.phone,
@@ -21,7 +20,7 @@ describe('Checkout Payment Method Tests', () => {
     paymentPage.verifySuccessOrder();
   });
 
-  it.only('should place order and pay with momo', () => {
+  it('TC20: should place order and pay with momo', () => {
     paymentPage.openCheckoutPage();
 
     paymentPage.fillShippingInfo(

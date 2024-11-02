@@ -12,6 +12,10 @@ class CartPage {
     this.elements.addProductBtn().click();
   }
 
+  verifyAddProduct(product) {
+    cy.contains(`${product} has been added to the cart!`).should('be.visible');
+  }
+
   openProductPage() {
     cy.visit('/shop');
   }

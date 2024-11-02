@@ -2,6 +2,7 @@ class Search {
   elements = {
     searchIcon: () => cy.get('#search-icon'),
     input: () => cy.get('input[placeholder="Search Products"]'),
+    productItem: () => cy.get('.product-item'),
   };
 
   openHomePage() {
@@ -14,6 +15,14 @@ class Search {
 
   typeSearch(product) {
     this.elements.input().type(product);
+  }
+
+  verifySearch(product) {
+    this.elements.productItem().first().should('contain', product);
+  }
+
+  clickOnProduct() {
+    this.elements.productItem().first().click();
   }
 }
 

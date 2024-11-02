@@ -2,11 +2,11 @@ import loginData from '../../fixtures/loginData.json';
 import productDetail from '../../pages/productDetailPage';
 
 describe('Customer Product Review Tests', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(loginData.validUser.email, loginData.validUser.password);
   });
 
-  it('should post a product review after login', () => {
+  it('TC12: should post a product review after login', () => {
     cy.visit('shop/rings/sixteen-stone-ring');
 
     cy.get('.reviews-section');

@@ -1,5 +1,8 @@
 {
-  "name": "Nguyen Thanh Danh",
-  "phone": "0123456789",
-  "address": "An Huong 1, My An, Mang Thit, Vinh Long"
+  "name": "Nguyen Van A",
+  "phone": "0789605889",
+  "address": "An Huong 1, My An, Mang Thit, Vinh Long",
+  "cardNumber": "9704 0000 0000 0018",
+  "cardExpire": "0307",
+  "otp": "otp"
 }

@@ -2,7 +2,7 @@ import search from '../../pages/search';
 import searchData from '../../fixtures/searchData.json';
 
 describe('Product Search Functionality Tests', () => {
-  it.only('should find products with a valid search keyword', () => {
+  it('TC8: should find products with a valid search keyword', () => {
     search.openHomePage();
 
     search.clickIconSearch();
@@ -13,14 +13,12 @@ describe('Product Search Functionality Tests', () => {
       .should('contain', searchData.validSearchKeyword);
   });
 
-  it('should show no results for an invalid search keyword', () => {
+  it('TC9: should show no results for an invalid search keyword', () => {
     search.openHomePage();
 
     search.clickIconSearch();
     search.typeSearch(searchData.invalidSearchKeyword);
 
-    cy.contains('Sorry, no results matched your search for.').should(
-      'be.visible'
-    );
+    cy.contains('Sorry, no results matched your search.').should('be.visible');
   });
 });

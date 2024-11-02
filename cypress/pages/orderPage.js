@@ -33,6 +33,21 @@ class OrderPage {
       .find(`.order-item[data-id="${orderId}"]`)
       .should('exist');
   }
+
+  verifyOrderList() {
+    this.elements.ordersList().should('be.visible');
+  }
+
+  verifyOrderDetail() {
+    cy.get('.order-item')
+      .first()
+      .invoke('attr', 'data-id')
+      .should('not.be.undefined') // Ensure order ID is not undefined
+      .then((orderId) => {
+        expect(orderId).to.exist;
+        this.viewOrderDetail(orderId);
+      });
+  }
 }
 
 export default new OrderPage();

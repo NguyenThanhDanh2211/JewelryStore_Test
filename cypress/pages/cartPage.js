@@ -19,11 +19,7 @@ class CartPage {
 
   addProductToCart(productName) {
     cy.visit('/shop');
-    this.elements
-      .card()
-      .contains(productName)
-      .find(this.elements.cartIcon())
-      .click();
+    this.elements.card().contains(productName).find('.cart-icon').click();
     cy.contains(`${productName} has been added to the cart!`).should(
       'be.visible'
     );
@@ -36,14 +32,14 @@ class CartPage {
 
     this.elements
       .productRow(productName)
-      .find(this.elements.productQuantity())
+      .find('.product-quantity')
       .should('have.text', `${increaseBy}`);
   }
 
   verifyProductQuantity(productName, expectedQuantity) {
     this.elements
       .productRow(productName)
-      .find(this.elements.productQuantity())
+      .find('.product-quantity')
       .should('be.visible')
       .invoke('text')
       .then((quantityText) => {
@@ -55,7 +51,7 @@ class CartPage {
   setProductQuantity(productName, quantity) {
     this.elements
       .productRow(productName)
-      .find(this.elements.productQuantity())
+      .find('.product-quantity')
       .clear()
       .type(quantity);
   }
@@ -67,15 +63,12 @@ class CartPage {
 
     this.elements
       .productRow(productName)
-      .find(this.elements.productQuantity())
+      .find('.product-quantity')
       .should('have.text', `${decreaseBy}`);
   }
 
   removeProductFromCart(productName) {
-    this.elements
-      .productRow(productName)
-      .find(this.elements.removeBtn())
-      .click();
+    this.elements.productRow(productName).find('.remove-product').click();
 
     this.elements.productRow(productName).should('not.exist');
   }
