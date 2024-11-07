@@ -1,15 +1,10 @@
-class CartPage {
+class CategoryPage {
   elements = {
     cartIcon: () => cy.get('.cart-icon'),
-    addProductBtn: () => cy.get('#add-product-btn'),
   };
 
   openProductDetail(slug) {
     cy.visit(`/shop/bracelets/${slug}`);
-  }
-
-  clickAddProduct() {
-    this.elements.addProductBtn().click();
   }
 
   verifyAddProduct(product) {
@@ -29,4 +24,4 @@ class CartPage {
   }
 }
 
-export default new CartPage();
+export default new CategoryPage();

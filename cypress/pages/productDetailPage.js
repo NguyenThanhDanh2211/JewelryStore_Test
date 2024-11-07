@@ -6,19 +6,20 @@ class ProductDetailsPage {
     productDescription: () => cy.get('.product-des'),
     reviewsSection: () => cy.get('.reviews-section'),
     reviewItems: () => cy.get('.review-item'),
-
-    postReviewBtn: () =>
-      cy.get(
-        '#root > div > div.MuiStack-root.css-1nsmvhe-MuiStack-root > div.reviews-section.MuiBox-root.css-yp8tjk > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2.css-6odsi3-MuiGrid-root > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-2.css-1o7apob-MuiGrid-root > div > div > div > button:nth-child(2)'
-      ),
-
+    postReviewBtn: () => cy.get('#submit-review-button'),
     reviewInput: () => cy.get('#review-input'),
     ratingStars: (rating) => cy.get(`.rating-star[data-value="${rating}"]`),
     submitReviewButton: () => cy.get('#submit-review-button'),
+
+    addProductBtn: () => cy.get('#add-product-btn'),
   };
 
   visitProductPage(slug) {
     cy.visit(`/shop/bracelets/${slug}`);
+  }
+
+  clickAddProduct() {
+    this.elements.addProductBtn().click();
   }
 
   verifyProductDetails(expectedName, expectedPrice) {

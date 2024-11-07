@@ -1,13 +1,14 @@
+import homePage from '../../pages/homePage';
+import loginPage from '../../pages/loginPage';
 import registerPage from '../../pages/registerPage';
 import registerData from '../../fixtures/registerData.json';
 
 describe('Customer Registration Tests', () => {
   it('TC1: should allow registration with valid email and password', () => {
-    registerPage.openHomePage();
+    homePage.openHomePage();
+    homePage.openLoginPage();
 
-    registerPage.clickAuthIcon();
-
-    registerPage.clickRegisterLink();
+    loginPage.clickRegisterLink();
 
     registerPage.enterFullName(registerData.fullName);
     registerPage.enterEmail(registerData.email);
@@ -19,11 +20,10 @@ describe('Customer Registration Tests', () => {
   });
 
   it('TC2: should not allow registration with an email that already exists', () => {
-    registerPage.openHomePage();
+    homePage.openHomePage();
+    homePage.openLoginPage();
 
-    registerPage.clickAuthIcon();
-
-    registerPage.clickRegisterLink();
+    loginPage.clickRegisterLink();
 
     registerPage.enterFullName(registerData.fullName);
     registerPage.enterEmail(registerData.email);
@@ -35,11 +35,10 @@ describe('Customer Registration Tests', () => {
   });
 
   it('TC3: should show an error message when password is less than 6 characters', () => {
-    registerPage.openHomePage();
+    homePage.openHomePage();
+    homePage.openLoginPage();
 
-    registerPage.clickAuthIcon();
-
-    registerPage.clickRegisterLink();
+    loginPage.clickRegisterLink();
 
     registerPage.enterFullName(registerData.fullName);
     registerPage.enterEmail(registerData.email);

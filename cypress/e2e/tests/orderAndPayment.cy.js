@@ -1,5 +1,5 @@
 import paymentPage from '../../pages/paymentPage';
-import searchPage from '../../pages/search';
+import searchPage from '../../pages/searchPage';
 import cartPage from '../../pages/addProductToCart';
 import orderPage from '../../pages/orderPage';
 import loginData from '../../fixtures/loginData.json';
@@ -11,7 +11,7 @@ describe('Checkout Payment Method Tests', () => {
     cy.login(loginData.validUser.email, loginData.validUser.password);
   });
 
-  it('should place order and pay with cash', () => {
+  it('TC19: should place order and pay with cash', () => {
     searchPage.clickIconSearch();
     searchPage.typeSearch(searchData.validSearchKeyword);
     searchPage.verifySearch(searchData.validSearchKeyword);
@@ -35,7 +35,7 @@ describe('Checkout Payment Method Tests', () => {
     orderPage.verifyOrderDetail();
   });
 
-  it('should place order and pay with momo', () => {
+  it('TC20: should place order and pay with momo', () => {
     searchPage.clickIconSearch();
     searchPage.typeSearch(searchData.validSearchKeyword);
     searchPage.verifySearch(searchData.validSearchKeyword);

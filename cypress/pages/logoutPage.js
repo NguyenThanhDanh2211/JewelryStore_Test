@@ -4,10 +4,6 @@ class LogoutPage {
     logoutIcon: () => cy.get('.logout-icon'),
   };
 
-  openHomePage() {
-    cy.visit('/');
-  }
-
   logout() {
     this.elements.userIcon().click();
     this.elements.logoutIcon().click();

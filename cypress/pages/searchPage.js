@@ -1,17 +1,9 @@
-class Search {
+class SearchPage {
   elements = {
     searchIcon: () => cy.get('#search-icon'),
     input: () => cy.get('input[placeholder="Search Products"]'),
     productItem: () => cy.get('.product-item'),
   };
-
-  openHomePage() {
-    cy.visit('/');
-  }
-
-  clickIconSearch() {
-    this.elements.searchIcon().click();
-  }
 
   typeSearch(product) {
     this.elements.input().type(product);
@@ -26,4 +18,4 @@ class Search {
   }
 }
 
-export default new Search();
+export default new SearchPage();

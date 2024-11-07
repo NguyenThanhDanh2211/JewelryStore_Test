@@ -1,17 +1,13 @@
 class loginPage {
   elements = {
-    authIcon: () => cy.get('#auth'),
     email: () => cy.get('#email'),
     password: () => cy.get('#password'),
     loginBtn: () => cy.get('#btn-login'),
+    registerLink: () => cy.get('#register'),
   };
 
-  openHomePage() {
-    cy.visit('/');
-  }
-
-  clickAuthIcon() {
-    this.elements.authIcon().click();
+  clickRegisterLink() {
+    this.elements.registerLink().click();
   }
 
   enterEmail(email) {

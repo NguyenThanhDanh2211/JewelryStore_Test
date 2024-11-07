@@ -1,4 +1,5 @@
-import cartPage from '../../pages/addProductToCart';
+import categoryPage from '../../pages/categoryPage';
+import productDetailPage from '../../pages/productDetailPage';
 import loginData from '../../fixtures/loginData.json';
 
 describe('Add Product To The Cart Functionality', () => {
@@ -7,20 +8,20 @@ describe('Add Product To The Cart Functionality', () => {
   });
 
   it('TC13: should add a product to the cart from the product page', () => {
-    cartPage.openProductPage();
-    cartPage.addMultipleProduct([9]);
+    categoryPage.openProductPage();
+    categoryPage.addMultipleProduct([9]);
   });
 
   it('TC 15: should add multiple products to the cart from the product page', () => {
-    cartPage.openProductPage();
-    cartPage.addMultipleProduct([0, 1, 2, 3]);
+    categoryPage.openProductPage();
+    categoryPage.addMultipleProduct([0, 1, 2, 3]);
   });
 
   it('TC 14: should add a product to the cart from the product details page', () => {
     const slug = 'smile-small-pendant';
 
-    cartPage.openProductDetail(slug);
-    cartPage.clickAddProduct();
+    categoryPage.openProductDetail(slug);
+    productDetailPage.clickAddProduct();
 
     cy.contains(' has been added to the cart!').should('be.visible');
   });
