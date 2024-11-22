@@ -1,6 +1,7 @@
 import paymentPage from '../../pages/paymentPage';
 import searchPage from '../../pages/searchPage';
-import cartPage from '../../pages/addProductToCart';
+import homePage from '../../pages/homePage';
+import productDetailPage from '../../pages/productDetailPage';
 import orderPage from '../../pages/orderPage';
 import loginData from '../../fixtures/loginData.json';
 import paymentData from '../../fixtures/paymentData.json';
@@ -12,13 +13,14 @@ describe('Checkout Payment Method Tests', () => {
   });
 
   it('TC19: should place order and pay with cash', () => {
-    searchPage.clickIconSearch();
+    homePage.clickSearchIcon();
+
     searchPage.typeSearch(searchData.validSearchKeyword);
     searchPage.verifySearch(searchData.validSearchKeyword);
     searchPage.clickOnProduct();
 
-    cartPage.clickAddProduct();
-    cartPage.verifyAddProduct(searchData.validSearchKeyword);
+    productDetailPage.clickAddProduct();
+    productDetailPage.verifyAddProduct(searchData.validSearchKeyword);
 
     paymentPage.openCheckoutPage();
     paymentPage.fillShippingInfo(
@@ -35,14 +37,15 @@ describe('Checkout Payment Method Tests', () => {
     orderPage.verifyOrderDetail();
   });
 
-  it('TC20: should place order and pay with momo', () => {
-    searchPage.clickIconSearch();
+  it.only('TC20: should place order and pay with momo', () => {
+    homePage.clickSearchIcon();
+
     searchPage.typeSearch(searchData.validSearchKeyword);
     searchPage.verifySearch(searchData.validSearchKeyword);
     searchPage.clickOnProduct();
 
-    cartPage.clickAddProduct();
-    cartPage.verifyAddProduct(searchData.validSearchKeyword);
+    productDetailPage.clickAddProduct();
+    productDetailPage.verifyAddProduct(searchData.validSearchKeyword);
 
     paymentPage.openCheckoutPage();
     paymentPage.fillShippingInfo(

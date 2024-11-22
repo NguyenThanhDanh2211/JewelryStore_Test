@@ -22,6 +22,10 @@ class ProductDetailsPage {
     this.elements.addProductBtn().click();
   }
 
+  verifyAddProduct(product) {
+    cy.contains(`${product} has been added to the cart!`).should('be.visible');
+  }
+
   verifyProductDetails(expectedName, expectedPrice) {
     this.elements.productImage().should('be.visible');
     this.elements.productName().should('contain.text', expectedName);

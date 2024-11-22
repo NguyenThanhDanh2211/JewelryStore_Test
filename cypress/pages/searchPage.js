@@ -13,6 +13,10 @@ class SearchPage {
     this.elements.productItem().first().should('contain', product);
   }
 
+  clickIconSearch() {
+    this.elements.searchIcon().click();
+  }
+
   clickOnProduct() {
     this.elements.productItem().first().click();
   }
