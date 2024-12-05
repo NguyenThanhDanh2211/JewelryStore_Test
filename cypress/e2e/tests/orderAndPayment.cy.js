@@ -8,11 +8,11 @@ import paymentData from '../../fixtures/paymentData.json';
 import searchData from '../../fixtures/searchData.json';
 
 describe('Checkout Payment Method Tests', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(loginData.validUser.email, loginData.validUser.password);
   });
 
-  it('TC19: should place order and pay with cash', () => {
+  it('TC20: should place order and pay with momo', () => {
     homePage.clickSearchIcon();
 
     searchPage.typeSearch(searchData.validSearchKeyword);
@@ -22,32 +22,9 @@ describe('Checkout Payment Method Tests', () => {
     productDetailPage.clickAddProduct();
     productDetailPage.verifyAddProduct(searchData.validSearchKeyword);
 
-    paymentPage.openCheckoutPage();
-    paymentPage.fillShippingInfo(
-      paymentData.name,
-      paymentData.phone,
-      paymentData.address
-    );
-    paymentPage.selectedPaymentMethod('cash');
-    paymentPage.submitOrder();
-    paymentPage.verifySuccessOrder();
-    paymentPage.goOrder();
+    homePage.openCartDrawer();
+    homePage.clickBtnCheckout();
 
-    orderPage.verifyOrderList();
-    orderPage.verifyOrderDetail();
-  });
-
-  it.only('TC20: should place order and pay with momo', () => {
-    homePage.clickSearchIcon();
-
-    searchPage.typeSearch(searchData.validSearchKeyword);
-    searchPage.verifySearch(searchData.validSearchKeyword);
-    searchPage.clickOnProduct();
-
-    productDetailPage.clickAddProduct();
-    productDetailPage.verifyAddProduct(searchData.validSearchKeyword);
-
-    paymentPage.openCheckoutPage();
     paymentPage.fillShippingInfo(
       paymentData.name,
       paymentData.phone,
@@ -63,6 +40,33 @@ describe('Checkout Payment Method Tests', () => {
     );
     paymentPage.clickOnPay();
     paymentPage.fillOpt();
+    paymentPage.submitOrder();
+    paymentPage.verifySuccessOrder();
+    paymentPage.goOrder();
+
+    orderPage.verifyOrderList();
+    orderPage.verifyOrderDetail();
+  });
+
+  it('TC19: should place order and pay with cash', () => {
+    homePage.clickSearchIcon();
+
+    searchPage.typeSearch(searchData.validSearchKeyword);
+    searchPage.verifySearch(searchData.validSearchKeyword);
+    searchPage.clickOnProduct();
+
+    productDetailPage.clickAddProduct();
+    productDetailPage.verifyAddProduct(searchData.validSearchKeyword);
+
+    homePage.openCartDrawer();
+    homePage.clickBtnCheckout();
+
+    paymentPage.fillShippingInfo(
+      paymentData.name,
+      paymentData.phone,
+      paymentData.address
+    );
+    paymentPage.selectedPaymentMethod('cash');
     paymentPage.submitOrder();
     paymentPage.verifySuccessOrder();
     paymentPage.goOrder();

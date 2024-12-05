@@ -8,7 +8,8 @@ class PaymentPage {
     paymentMethod: {
       cashOption: () => cy.get('#payment-method-cash'),
       momoOption: () => cy.get('#payment-method-momo'),
-      openUrl: () => cy.get('#open-url-momo'),
+      // openUrl: () => cy.get('#open-url-momo'),
+      openUrl: () => cy.contains('Click here to pay with Momo'),
     },
     momo: {
       atm: () =>
@@ -66,7 +67,7 @@ class PaymentPage {
       this.elements.submitButton().click();
     } else if (method === 'momo') {
       this.elements.paymentMethod.momoOption().click();
-      this.elements.paymentMethod.openUrl().click();
+      this.elements.paymentMethod.openUrl().should('exist').click();
 
       // this.elements.submitButton().click();
     }

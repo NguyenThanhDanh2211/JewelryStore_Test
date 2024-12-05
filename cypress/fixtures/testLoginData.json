@@ -1,0 +1,23 @@
+[
+  {
+    "username": "danh.nguyen@gmail.com",
+    "password": "Password123!",
+    "expectedResult": "Log in successful!"
+  },
+  {
+    "username": "danh@gmail.com",
+    "password": "Password123!",
+    "expectedResult": "Invalid email or password"
+  },
+
+  {
+    "username": "danh.nguyen@gmail.com",
+    "password": "123!",
+    "expectedResult": "Invalid email or password"
+  },
+  {
+    "username": "danh@gmail.com",
+    "password": "Password!",
+    "expectedResult": "Invalid email or password"
+  }
+]

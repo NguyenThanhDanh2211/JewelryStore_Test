@@ -19,5 +19,8 @@
   "homepage": "https://github.com/NguyenThanhDanh2211/JewelryStore_Test#readme",
   "devDependencies": {
     "cypress": "^13.15.0"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
   }
 }
