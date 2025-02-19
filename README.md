@@ -9,8 +9,7 @@ This repository contains the **testing** for my jewelry e-commerce website, deve
 - **Data-Driven Testing** for flexible test cases
 
 ## Testing Approach 🔬
-### Automated Unit Testing
-- **Key Features:**
+### Key Features:
   - User Registration & Login
   - Product Search
   - Add to Cart
